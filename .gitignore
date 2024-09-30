@@ -9,5 +9,3 @@ __pychace__/
 *env
 
 venv/
-
-db.sqlite3
