@@ -7,9 +7,8 @@ from .models import CustomUser
 
 
 def home(request):
-    usuarios = CustomUser.objects.all()
 
-    return render(request, 'home.html', {'usuarios': usuarios})
+    return render(request, 'home.html')
 
 
 def criar_usuario(request):
@@ -63,3 +62,10 @@ def logout_page(request):
 
     logout(request)
     return redirect('home')
+
+
+def perfil_page(request):
+
+    user = CustomUser.objects.filter(username=request.user)
+
+    return render(request, 'perfil_page.html', {'user': user})
