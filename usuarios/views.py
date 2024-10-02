@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import CustomUserCreateForm
+from django.contrib.auth import authenticate, login
+from .forms import CustomUserCreateForm, CustomLoginPage
 from .models import CustomUser
 # Create your views here.
 
@@ -34,4 +35,26 @@ def criar_usuario(request):
     return render(request, 'form_usuario.html', {'form': form})
 
 
+# Sempre tenha uma view function login_page para que os usuários sejam autenticado e apareçam no template.
+def login_page(request):
+
+    if request.method == 'POST':
+        form = CustomLoginPage(request, data=request.POST)
+
+        if form.is_valid():
+
+            email = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            user = authenticate(request, username=email, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return redirect('index')
+            else:
+                messages.error(request, 'E-mail ou senha incorreto.')
+    else:
+        form = CustomLoginPage()
+    
+    return render(request, 'login_page.html', {'form': form})
 
