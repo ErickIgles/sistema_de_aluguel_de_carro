@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div class="container">
+    {% bootstrap_messages %}
+
+    {% if user.is_authenticated %}
+        <h1>Seja Bem-Vindo, {{user.nome}} {{user.sobrenome}}</h1>
+    {% else %}
+        <h1>Olá, Mundo!</h1>
+        <a href="{% url 'criar_usuario' %}">Cadastro</a>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}
