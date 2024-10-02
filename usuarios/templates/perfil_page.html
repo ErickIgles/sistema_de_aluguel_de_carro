@@ -6,6 +6,8 @@
     <p>Nome: {{request.user.nome}} {{request.user.sobrenome}}</p>
     <p>E-mail: {{request.user.email}}</p>
     <p>CPF: {{request.user.cpf}}</p>
+
+    <a href="{% url 'atualizar_usuario' %}">Atualizar dados</a>
 </div>
 
 {% endblock %}
