@@ -9,6 +9,7 @@
     {% if user.is_authenticated %}
         <h1>Seja Bem-Vindo, {{user.nome}} {{user.sobrenome}}</h1>
         <a href="{% url 'logout_page' %}">Logout</a>
+        <a href="{% url 'perfil_page' %}">Perfil</a>
     {% else %}
         <h1>Olá, Mundo!</h1>
         <a href="{% url 'criar_usuario' %}">Cadastro</a>
