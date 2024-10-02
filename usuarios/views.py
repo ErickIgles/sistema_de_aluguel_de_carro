@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import CustomUserCreateForm, CustomLoginPage
 from .models import CustomUser
 # Create your views here.
 
 
-def index(request):
+def home(request):
     usuarios = CustomUser.objects.all()
 
     return render(request, 'home.html', {'usuarios': usuarios})
@@ -27,7 +27,7 @@ def criar_usuario(request):
 
             messages.success(request, f'Seja bem-vindo, {user.nome}')
             
-            return redirect('index')
+            return redirect('home')
         
         else:
             messages.error(request, f'Não foi possível efetuar o cadastro')
@@ -50,7 +50,7 @@ def login_page(request):
             
             if user is not None:
                 login(request, user)
-                return redirect('index')
+                return redirect('home')
             else:
                 messages.error(request, 'E-mail ou senha incorreto.')
     else:
@@ -58,3 +58,8 @@ def login_page(request):
     
     return render(request, 'login_page.html', {'form': form})
 
+
+def logout_page(request):
+
+    logout(request)
+    return redirect('home')
