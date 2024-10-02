@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="container">
+    <p>Nome: {{request.user.nome}} {{request.user.sobrenome}}</p>
+    <p>E-mail: {{request.user.email}}</p>
+    <p>CPF: {{request.user.cpf}}</p>
+</div>
+
+{% endblock %}
