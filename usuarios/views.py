@@ -23,9 +23,8 @@ def criar_usuario(request):
             user = form.save(commit=False)
             user.username = user.email.lower()
             user.save()
-
-            messages.success(request, f'Seja bem-vindo, {user.nome}')
             
+            login(request, user)
             return redirect('home')
         
         else:
@@ -94,6 +93,19 @@ def atualizar_senha(request):
                 return redirect('perfil_page')
     
     return render(request, 'atualizar_senha.html', {'form': form})
+
+
+def deletar_usuario(request):
+    
+    user = CustomUser.objects.get(username=request.user)
+
+    if request.method == 'POST':
+        user.delete()
+
+        messages.info(request, 'Conta apagada com sucesso!')
+        return redirect('home')
+    
+    return render(request, 'deletar_usuario.html')
 
 
 def logout_page(request):
