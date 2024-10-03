@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div class="container" style="justify-content: center;">
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <p>Tem certeza que deseja apagar a conta: <strong>{{request.user.nome}} {{request.user.sobrenome}}<strong>?</p>
+
+        {% buttons %}
+            <a href="{% url 'perfil_page' %}" class="btn btn-warning">Cancelar</a>
+            <button class="btn btn-primary" type="submit">Continuar</button>
+        {% endbuttons %}
+
+    </form>
+
+</div>
+{% endblock %}
