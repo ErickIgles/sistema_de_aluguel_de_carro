@@ -11,3 +11,7 @@ __pychace__/
 venv/
 
 db.sqlite3
+
+template/
+
+htmlcov/*
