@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="container">
+
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <a href="{% url 'atualizar_senha' %}">Atualizar senha</a>
+        {% buttons %}
+            <button class="btn btn-primary" type="submit" name="atualizar_dados">Atualizar</button>
+        {% endbuttons %}
+    </form>
+</div>
+
+{% endblock %}
