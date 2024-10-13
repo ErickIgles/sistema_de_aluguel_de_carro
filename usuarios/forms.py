@@ -50,5 +50,5 @@ class PasswordUserChange(SetPasswordForm):
 
 
     class Meta:
-        fields = ['new_passwod1', 'new_password2']
+        fields = ['new_password1', 'new_password2']
 
