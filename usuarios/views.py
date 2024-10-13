@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from .forms import CustomUserCreateForm, CustomLoginPage, CustomUserChangeForm, PasswordUserChange
@@ -26,9 +27,6 @@ def criar_usuario(request):
             
             login(request, user)
             return redirect('home')
-        
-        else:
-            messages.error(request, f'Não foi possível efetuar o cadastro')
     
     return render(request, 'form_usuario.html', {'form': form})
 
@@ -49,15 +47,13 @@ def login_page(request):
             if user is not None:
                 login(request, user)
                 return redirect('home')
-            else:
-                messages.error(request, 'E-mail ou senha incorreto.')
     else:
         form = CustomLoginPage()
     
     return render(request, 'login_page.html', {'form': form})
 
 
-def atualizar_usuario(request):
+def atualizar_dados(request):
 
     form = CustomUserChangeForm(instance=request.user)
 
@@ -66,31 +62,28 @@ def atualizar_usuario(request):
 
         if form.is_valid():
 
-            try:
-                form.save()
-                return redirect('perfil_page')
-            except ValueError as err:
-                messages.error(request, f'Erro ao atualizar os dados: {err}!')
-                return redirect('perfil_page')
-    return render(request, 'atualizar_usuario.html', {'form':form})
+            form.save()
+            messages.info(request, 'Dados atualizados com sucesso!')
+            return redirect('perfil_page')
+
+    return render(request, 'atualizar_dados.html', {'form':form})
 
 
 def atualizar_senha(request):
-
-    form = PasswordUserChange(user=request.user)
 
     if request.method == 'POST':
         form = PasswordUserChange(user=request.user, data=request.POST)
         
         if form.is_valid():
 
-            try:
-                user = form.save()
-                update_session_auth_hash(request, user)
-                return redirect('perfil_page')
-            except ValueError as err:
-                messages.error(request, f'Erro ao atualizar a senha {err}')
-                return redirect('perfil_page')
+            user = form.save()
+            update_session_auth_hash(request, user)
+            
+            messages.info(request, 'Senha atualizada com sucesso!')
+            return redirect('perfil_page')
+    else:
+        form = PasswordUserChange(user=request.user)
+
     
     return render(request, 'atualizar_senha.html', {'form': form})
 
@@ -101,19 +94,21 @@ def deletar_usuario(request):
 
     if request.method == 'POST':
         user.delete()
-
+        
         messages.info(request, 'Conta apagada com sucesso!')
+
         return redirect('home')
-    
     return render(request, 'deletar_usuario.html')
 
 
+@login_required
 def logout_page(request):
 
     logout(request)
     return redirect('home')
 
 
+@login_required
 def perfil_page(request):
 
     user = CustomUser.objects.filter(username=request.user)
