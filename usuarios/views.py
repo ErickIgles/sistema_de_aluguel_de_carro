@@ -53,6 +53,7 @@ def login_page(request):
     return render(request, 'login_page.html', {'form': form})
 
 
+@login_required(login_url='login_page')
 def atualizar_dados(request):
 
     form = CustomUserChangeForm(instance=request.user)
@@ -69,6 +70,7 @@ def atualizar_dados(request):
     return render(request, 'atualizar_dados.html', {'form':form})
 
 
+@login_required(login_url='login_page')
 def atualizar_senha(request):
 
     if request.method == 'POST':
@@ -88,6 +90,7 @@ def atualizar_senha(request):
     return render(request, 'atualizar_senha.html', {'form': form})
 
 
+@login_required(login_url='login_page')
 def deletar_usuario(request):
     
     user = CustomUser.objects.get(username=request.user)
@@ -101,14 +104,14 @@ def deletar_usuario(request):
     return render(request, 'deletar_usuario.html')
 
 
-@login_required
+@login_required(login_url='login_page')
 def logout_page(request):
 
     logout(request)
     return redirect('home')
 
 
-@login_required
+@login_required(login_url='login_page')
 def perfil_page(request):
 
     user = CustomUser.objects.filter(username=request.user)
