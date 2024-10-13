@@ -4,12 +4,13 @@
 {% block content %}
 
 <div class="container">
+    
     <form method="POST">
         {% csrf_token %}
         {% bootstrap_form form %}
 
         {% buttons %}
-            <button class="btn btn-primary" type="submit">Atualizar</button>
+            <button class="btn btn-primary" type="submit" name="nova_senha">Atualizar</button>
         {% endbuttons %}
     </form>
 </div>
