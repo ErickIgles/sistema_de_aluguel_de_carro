@@ -1,15 +1,44 @@
 {% load bootstrap5 %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AkugaAi</title>
     {% bootstrap_css %}
 </head>
 <body>
 
-    <div>
+    <header>
+      {% if request.path != '/login_page/' and request.path != '/form_usuario/' and  request.path != '/logout_page/' and request.path != '/deletar_conta/' and request.path != '/perfil_page/' and request.path != '/atualizar_dados/' and request.path != '/atualizar_senha/'%}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">AlugaAi</a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'carros:carros_alugados' %}">Carros alugados</a>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div>
+                    {% if user.is_authenticated %}
+                        <h3>Seja Bem-Vindo, {{user.nome}} {{user.sobrenome}}</h3>
+                        <a href="{% url 'logout_page' %}">Logout</a>
+                        <a href="{% url 'perfil_page' %}">Perfil</a>
+                    {% else %}
+                        <a href="{% url 'login_page' %}">Login</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+      {% endif %}
+    </header>
+    <div class="container mt-5  ">
         {% block content %} {% endblock %}
     </div>
     {% bootstrap_javascript %}
