@@ -4,12 +4,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from .forms import CustomUserCreateForm, CustomLoginPage, CustomUserChangeForm, PasswordUserChange
 from .models import CustomUser
+from carros.models import Carros
 # Create your views here.
 
 
 def home(request):
+    carros = Carros.objects.all()
 
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'carros': carros})
 
 
 def criar_usuario(request):
