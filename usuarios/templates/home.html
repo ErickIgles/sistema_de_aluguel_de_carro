@@ -6,17 +6,34 @@
 <div class="container">
     {% bootstrap_messages %}
 
-    {% if user.is_authenticated %}
-        <h1>Seja Bem-Vindo, {{user.nome}} {{user.sobrenome}}</h1>
-        <a href="{% url 'logout_page' %}">Logout</a>
-        <a href="{% url 'perfil_page' %}">Perfil</a>
+    {% if carros %}
+        {% for carro in carros %}
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img src="{{carro.imagem.url}}" class="card-img-top" alt="carro_generico">
+                    <div class="card-body">
+                        <h5 class="card-title">Marca: {{carro.marca}}</h5>
+                        <p class="card-text">Modelo: {{carro.modelo}}</p>
+                        <p class="card-text">Ano: {{carro.ano}}</p>
+                        <p class="card-text">Cor: {{carro.cor}}</p>
+                        <p class="card-text">Quilometragem: {{carro.quilometragem}}</p>
+                        <p class="card-text">Valor diário: {{carro.valor_diario}}</p>
+                    </div>
+                    <div style="margin-left: 120px;">
+                        {% buttons %}
+                           <a href="{% url 'carros:carro_form' carro.id %}"><button class="btn btn-primary" type="submit">Alugar</button></a>
+                        {% endbuttons %}
+                    </div>
+                </div>  
+            </div>
+        </div>
+        {% endfor %}
+
     {% else %}
-        <h1>Olá, Mundo!</h1>
-        <a href="{% url 'criar_usuario' %}">Cadastro</a>
-        <a href="{% url 'login_page' %}">Login</a>
+        <li>Não há carros cadastrados no momento</li>
     {% endif %}
-
 </div>
-
 
 {% endblock %}
