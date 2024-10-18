@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% load bootstrap5 %}
+
+{% block content %}
+
+<div class="container">
+    {% bootstrap_messages %}
+
+    {% if carros %}
+        {% for carro in carros %}
+            <div class="row">
+
+
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img src="{{carro.carro.imagem.url}}" class="card-img-top" alt="carro_generico">
+                        <div class="card-body">
+                            <h5 class="card-title">Marca: {{carro.carro.marca}}</h5>
+                            <p class="card-text">Modelo: {{carro.carro.modelo}}</p>
+                            <p class="card-text">Ano: {{carro.carro.ano}}</p>
+                            <p class="card-text">Cor: {{carro.carro.cor}}</p>
+                            <p class="card-text">Quilometragem: {{carro.carro.quilometragem}}</p>
+                            <p class="card-text">Valor diário: {{carro.carro.valor_diario}}</p>
+                        </div>
+                        <div class="card-footer d-flex" style="margin-left: 2px;">
+                            <form method="POST" action="{% url 'carros:devolver_carro' carro.id %}">
+                                {% csrf_token %}
+
+                                <div class="form-group">
+                                    <input type="number" class="form-control" name="quilometragem_rodada" placeholder="Quilometragem rodada" required>
+                                </div>
+                                <p class="mb-3">Valor a pagar: R${{carro.calcular_valor_aluguel}}</p>
+                                <div style="margin-left: 120px;">
+                                    {% buttons %}
+                                       <button class="btn btn-primary" type="submit" name="devolver_carro">Devolver</button>
+                                    {% endbuttons %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Ainda não há carros alugados.</p>
+    {% endif %} 
+
+</div>
+
+{% endblock %}
