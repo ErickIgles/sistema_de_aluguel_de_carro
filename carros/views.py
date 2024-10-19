@@ -29,6 +29,7 @@ def alugando_carro(request, pk):
             return redirect('carros:carros_alugados')
         except ValueError as err:
             messages.error(request, f'Erro: {err}')
+            return redirect('home')
     else:
         form = ReservandoCarro()
 
@@ -42,6 +43,7 @@ def carros_alugados(request):
     return render(request, 'carros_alugados.html', {'carros': carro_alugado})
 
 
+@login_required(login_url='login_page')
 def devolver_carro(request, pk):
     carro_alugado = AluguelCarro.objects.get(id=pk, usuario=request.user)
 
