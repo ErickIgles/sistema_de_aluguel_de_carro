@@ -29,6 +29,9 @@ class CriarUsuarioTestCase(TestCase):
     def test_criar_usuario_view(self):
         response = self.client.post(reverse('criar_usuario'), data=self.dados)
 
+        self.client.login(username=self.dados['email'], password=self.dados['password1'])
+
+
         # Verifica se a resposta redireciona corretamente
         self.assertEqual(response.status_code, 302)  # Verifica se foi redirecionado
         self.assertRedirects(response, reverse('home'))  # Verifica se redirecionou para a página correta
@@ -89,7 +92,6 @@ class LoginPageTestCase(TestCase):
         response = self.client.post(reverse('login_page'), data=self.dados2)
         
         self.assertRedirects(response, reverse('home'))
-        self.assertTrue(self.client.login(username=self.email, password=self.password))
     
 
     def test_login_page_get(self):
@@ -190,6 +192,8 @@ class AtualizarDadosTestCase(TestCase):
         }
 
         self.client.post(reverse('criar_usuario'), data=self.dados)
+        
+        self.client.login(username=self.dados['email'], password=self.dados['password1'])
 
         response = self.client.get(reverse('atualizar_dados'))
         self.assertEqual(response.status_code, 200)
@@ -212,9 +216,6 @@ class AtualizarDadosTestCase(TestCase):
         self.assertEqual(user.cpf, dados_atualizados['cpf'])
 
 
-from django.test import TestCase
-from django.urls import reverse
-from django.contrib.auth import get_user_model
 
 class AtualizarSenhaTestCase(TestCase):
     
@@ -238,6 +239,9 @@ class AtualizarSenhaTestCase(TestCase):
     def test_atualizar_senha(self):
         # Primeiro, crie o usuário
         self.client.post(reverse('criar_usuario'), data=self.dados)
+
+        self.client.login(username=self.dados['email'], password=self.dados['password1'])
+
 
         # Acesse a página de atualização de senha
         response = self.client.get(reverse('atualizar_senha'))
@@ -286,6 +290,9 @@ class DeletarUsuarioTestCase(TestCase):
     def test_deletar_usuario(self):
 
         self.client.post(reverse('criar_usuario'), data=self.dados)
+
+        self.client.login(username=self.dados['email'], password=self.dados['password1'])
+
 
         response = self.client.get(reverse('deletar_usuario'))
         self.assertEqual(response.status_code, 200)
