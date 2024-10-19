@@ -12,6 +12,8 @@ venv/
 
 db.sqlite3
 
+manipulacao.sql
+
 template/
 
 htmlcov/*
