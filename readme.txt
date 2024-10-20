@@ -32,3 +32,8 @@ captura de tela da atualização de dados do usuário:
 
 captura de tela da atualização de senha:
 (https://github.com/ErickIgles/sistema_de_aluguel_de_carro/blob/main/captura_sistema_aluguel_carro_atualizar_senha.png?raw=true)
+
+
+captura de tela da opção de apagar conta:
+(https://github.com/ErickIgles/sistema_de_aluguel_de_carro/blob/main/captura_sistema_aluguel_carro_apagar_conta.png?raw=true)
+
