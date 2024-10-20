@@ -28,3 +28,7 @@ captura de tela do perfil do usuário:
 
 captura de tela da atualização de dados do usuário:
 (https://github.com/ErickIgles/sistema_de_aluguel_de_carro/blob/main/captura_sistema_aluguel_carro_atualizar_dados.png?raw=true)
+
+
+captura de tela da atualização de senha:
+(https://github.com/ErickIgles/sistema_de_aluguel_de_carro/blob/main/captura_sistema_aluguel_carro_atualizar_senha.png?raw=true)
