@@ -15,3 +15,7 @@ tela de cadastro:
 
 tela de formulário para aluguel:
 (https://github.com/ErickIgles/sistema_de_aluguel_de_carro/blob/main/captura_sistema_aluguel_carro_fomulario_aluguel.png)
+
+
+captura de procedimento de devolução de carro. Onde informa a quilometragem percorrida para a atualização da quilometragem do carro.
+(https://github.com/ErickIgles/sistema_de_aluguel_de_carro/blob/main/captura_sistema_aluguel_carro_devolucao.png?raw=true)
