@@ -2,6 +2,18 @@ Estou criando um sistema de aluguel de carros.
 
 Esta versão do sistema é V1.0.
 
+
+Este projeto é um sistema de aluguel de carros desenvolvido em Django, utilizando o banco de dados SQLite. Ele permite que os usuários se cadastrem, façam login e realizem o aluguel de veículos.
+
+Funcionalidades
+-> Cadastro de usuário
+-> Login seguro
+-> Aluguel de carros
+-> Atualização da quilometragem após devolução
+-> Edição de dados pessoais
+-> Alteração de senha
+-> Exclusão de conta
+
 ### Capturas de Tela:
 
 Captura de tela inicial do sistema**:  
