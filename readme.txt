@@ -37,3 +37,5 @@ captura de tela da atualização de senha:
 captura de tela da opção de apagar conta:
 (https://github.com/ErickIgles/sistema_de_aluguel_de_carro/blob/main/captura_sistema_aluguel_carro_apagar_conta.png?raw=true)
 
+captrura de tela do relatório do coverage da porcentagem de teste do sistema:
+(https://github.com/ErickIgles/sistema_de_aluguel_de_carro/blob/main/captura_sistema_aluguel_carro_coverage_report_test.png?raw=true) 
