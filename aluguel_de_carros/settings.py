@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'aluguel_de_carros.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'alugueldecarro',
+        'USER' : 'erickigles',
+        'PASSWORD':'muralhagigante7458@',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
