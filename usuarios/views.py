@@ -95,7 +95,7 @@ def atualizar_senha(request):
 @login_required(login_url='login_page')
 def deletar_usuario(request):
     
-    user = CustomUser.objects.get(username=request.user)
+    user = CustomUser.objects.get(username=request.user.username)
 
     if request.method == 'POST':
         user.delete()
